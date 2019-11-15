@@ -65,5 +65,5 @@ https://blog.naver.com/8721son/221681436462
 WebContent/Blog_CustomPage/**
 
 #### 5. 실행 영상
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=DAAs2CECGrI" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+
 -youtube주소 : <https://www.youtube.com/watch?v=DAAs2CECGrI>
