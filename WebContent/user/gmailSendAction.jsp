@@ -23,7 +23,7 @@
 	String subject = "경민이 블로그 회원 가입을 위한 이메일 인증 메일입니다";
 	StringBuffer sb = new StringBuffer();
 	sb.append("다음 링크에 접속하여 이메일 인증을 진행해주세요");
-	sb.append("<a href='http://localhost:8000/blog/user/gmailCheckAction.jsp?code="+code+"&email="+to+"&username="+username+"'>");
+	sb.append("<a href='http://ec2-54-180-96-4.ap-northeast-2.compute.amazonaws.com:8080/blog/user/gmailCheckAction.jsp?code="+code+"&email="+to+"&username="+username+"'>");
 	sb.append("이메일 인증하기</a>");
 	String content = sb.toString();
 	//설정 값

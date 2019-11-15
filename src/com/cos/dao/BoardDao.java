@@ -140,8 +140,8 @@ public class BoardDao {
 	public List<Board> findAll(int page) {
 		final String SQL = "SELECT * FROM board b,user u WHERE b.userId=u.id ORDER BY b.id DESC limit ?,3";
 		conn = DBConn.getConnection();
+		List<Board> boards = new ArrayList<>();
 		try {
-			List<Board> boards = new ArrayList<>();
 
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, (page - 1) * 3);
@@ -160,13 +160,12 @@ public class BoardDao {
 				board.getUser().setUserProfile(rs.getString("u.userProfile"));
 				boards.add(board);
 			}
-			return boards;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		return null;
+		return boards;
 	}
 	
 	public List<Board> findAll(int page, String search) {
@@ -178,9 +177,9 @@ public class BoardDao {
 		
 		final String SQL = sb.toString();
 		conn = DBConn.getConnection();
+		List<Board> boards = new ArrayList<>();
 		try {
 			
-			List<Board> boards = new ArrayList<>();
 
 			pstmt = conn.prepareStatement(SQL);
 			
@@ -202,13 +201,12 @@ public class BoardDao {
 				board.getUser().setUserProfile(rs.getString("u.userProfile"));
 				boards.add(board);
 			}
-			return boards;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		return null;
+		return boards;
 	}
 
 	// 인기리스트 3건 뽑기
@@ -216,8 +214,8 @@ public class BoardDao {
 
 		final String SQL = "SELECT * FROM board ORDER BY readCount DESC limit 3";
 		conn = DBConn.getConnection();
+		List<Board> boards = new ArrayList<>();
 		try {
-			List<Board> boards = new ArrayList<>();
 
 			pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
@@ -233,13 +231,12 @@ public class BoardDao {
 
 				boards.add(board);
 			}
-			return boards;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		return null;
+		return boards;
 	}
 
 	// 조회수 증가

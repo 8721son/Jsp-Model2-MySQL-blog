@@ -16,7 +16,6 @@ public class CommentDao {
 	private ResultSet rs; // 결과를 보관할 커서
 
 	public List<Comment> findByBoardId(int boardId) {
-
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT c.id, c.userId, c.boardId, c.content, c.createDate,u.username,u.userProfile ");
 		sb.append("FROM comment c, user u ");
@@ -24,8 +23,8 @@ public class CommentDao {
 		sb.append("and boardId = ? ");
 		final String SQL = sb.toString();
 		conn = DBConn.getConnection();
+		List<Comment> comments = new ArrayList<>();
 		try {
-			List<Comment> comments = new ArrayList<>();
 
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, boardId);
@@ -42,13 +41,12 @@ public class CommentDao {
 				comment.getUser().setUserProfile(rs.getString("u.userProfile"));
 				comments.add(comment);
 			}
-			return comments;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		return null;
+		return comments;
 	}
 
 	public int delete(int commentId) {
